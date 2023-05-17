@@ -1,0 +1,26 @@
+{
+  "name": "the-system-server",
+  "version": "0.1.0",
+  "description": "The System - Server",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev src/index.ts",
+    "start": "node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Taffur (https://github.com/tar83)",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "eslint": "^8.40.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
