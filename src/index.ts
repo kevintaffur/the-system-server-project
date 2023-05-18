@@ -1,30 +1,9 @@
-import { PrismaClient } from "@prisma/client";
-import express from "express";
+import app from "./app";
+import http from "http";
+import logger from "./utils/logger";
 
-const app = express();
-app.use(express.json());
-const prisma = new PrismaClient();
+const server = http.createServer(app);
 
-app.get("/", (_req, res) => {
-  res.send("hey!");
-});
-
-app.post("/institutions", async (req, res) => {
-  console.log(req.body);
-  const { name } = req.body;
-  const institution = await prisma.institution.create({
-    data: {
-      name,
-    },
-  });
-  res.json(institution);
-});
-
-app.get("/institutions", async (_req, res) => {
-  const institutions = await prisma.institution.findMany({});
-  res.json(institutions);
-});
-
-app.listen(3001, () => {
-  console.log("Server running on port 3001");
+server.listen(3001, () => {
+  logger.info("Server running on port 3001");
 });
