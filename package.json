@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kevin Taffur (https://github.com/tar83)",
-  "license": "UNLICENSED",
+  "license": "GPL-3.0-only",
   "private": true,
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
