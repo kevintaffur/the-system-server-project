@@ -1,5 +1,6 @@
 import express from "express";
-import institutionsRouter from "./routes/institutions.route";
+import usersRouter from "./routes/users.route";
+import rolesRouter from "./routes/roles.route";
 import { setPrismaToRequest } from "./utils/middleware";
 import { PrismaClient } from "@prisma/client";
 import { prismaDisconnect } from "./utils/middleware";
@@ -9,7 +10,8 @@ app.use(express.json());
 const prisma = new PrismaClient();
 
 app.use(setPrismaToRequest(prisma));
-app.use("/institutions", institutionsRouter);
+app.use("/users", usersRouter);
+app.use("/roles", rolesRouter);
 app.use(prismaDisconnect);
 
 export default app;
