@@ -13,3 +13,11 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const SECRET = process.env.SECRET;
+
+export { SECRET };

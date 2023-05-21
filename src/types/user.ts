@@ -25,4 +25,19 @@ export interface User {
   rolId: number;
 }
 
+export interface UserFromDB {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  passwordHash: string;
+  rolId: number;
+}
+
 export type NewUser = Omit<User, "id" | "createdAt" | "updatedAt">;
+export type UserAtRequest = Omit<
+  UserFromDB,
+  "createdAt" | "updatedAt" | "passwordHash"
+>;

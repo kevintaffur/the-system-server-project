@@ -16,6 +16,7 @@
 
 import { NewUser } from "../types/user";
 import { NewRol } from "../types/rol";
+import { Login } from "../types/login";
 
 type UserFields = {
   firstName: unknown;
@@ -27,6 +28,11 @@ type UserFields = {
 
 type RolFields = {
   name: unknown;
+};
+
+type LoginFields = {
+  email: unknown;
+  password: unknown;
 };
 
 const toNewUser = ({
@@ -53,6 +59,14 @@ const toNewRol = ({ name }: RolFields): NewRol => {
   return newRol;
 };
 
+const toNewLogin = ({ email, password }: LoginFields): Login => {
+  const newLogin = {
+    email: parseString(email),
+    password: parseString(password),
+  };
+  return newLogin;
+};
+
 const isString = (text: unknown): text is string => {
   return typeof text === "string" || text instanceof String;
 };
@@ -75,4 +89,4 @@ const parseNumber = (nbr: unknown): number => {
   return nbr;
 };
 
-export { toNewUser, toNewRol, parseNumber };
+export { toNewUser, toNewRol, toNewLogin };

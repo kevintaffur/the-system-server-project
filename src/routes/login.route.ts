@@ -14,12 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import { PrismaClient } from "@prisma/client";
-import { Request } from "express";
-import { UserAtRequest } from "./user";
+import { Router } from "express";
+import login from "../controllers/login.controller";
 
-export interface CustomRequest extends Request {
-  prisma?: PrismaClient;
-  token?: string | null;
-  user?: UserAtRequest;
-}
+const router = Router();
+
+router.post("/", login.create);
+
+export default router;
