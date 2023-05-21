@@ -16,46 +16,46 @@
 
 import { NextFunction, Response } from "express";
 import { CustomRequest } from "../types/customRequest";
-import { toNewRol } from "../utils/helper";
-
-const get = async (req: CustomRequest, res: Response, next: NextFunction) => {
-  const roles = await req.prisma?.rol.findMany({
-    select: {
-      id: true,
-      name: true,
-    },
-  });
-  res.status(200).json(roles);
-  next();
-};
+import { toNewLogin } from "../utils/helper";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { SECRET } from "../utils/config";
 
 const create = async (
   req: CustomRequest,
   res: Response,
   next: NextFunction
 ) => {
-  const newRol = toNewRol(req.body);
+  const newLogin = toNewLogin(req.body);
 
-  const existingRol = await req.prisma?.rol.findUnique({
+  const user = await req.prisma?.user.findUnique({
     where: {
-      name: newRol.name,
+      email: newLogin.email,
     },
   });
 
-  if (existingRol) {
-    res.status(400).json({
-      error: "Rol must be unique.",
+  const passwordCorrect = !user
+    ? false
+    : await bcrypt.compare(newLogin.password, user.passwordHash);
+
+  if (!(user && passwordCorrect)) {
+    res.status(401).json({
+      error: "Invalid username or password",
     });
     return next();
   }
 
-  const rol = await req.prisma?.rol.create({
-    data: {
-      name: newRol.name,
-    },
+  const userForToken = {
+    id: user.id,
+    rol: user.rolId,
+  };
+
+  const token = jwt.sign(userForToken, SECRET);
+
+  res.status(200).send({
+    token,
   });
-  res.status(201).json(rol);
   return next();
 };
 
-export default { get, create };
+export default { create };

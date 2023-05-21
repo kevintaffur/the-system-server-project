@@ -10,11 +10,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kevin Taffur (https://github.com/tar83)",
-  "license": "UNLICENSED",
+  "license": "GPL-3.0-only",
   "private": true,
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
     "eslint": "^8.40.0",
@@ -25,6 +27,8 @@
   "dependencies": {
     "@prisma/client": "^4.14.1",
     "bcrypt": "^5.1.0",
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0"
   }
 }

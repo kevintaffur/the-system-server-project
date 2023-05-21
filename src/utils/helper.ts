@@ -1,5 +1,22 @@
+// TS - The System
+// Copyright (c) 2023 Kevin Taffur
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
+
 import { NewUser } from "../types/user";
 import { NewRol } from "../types/rol";
+import { Login } from "../types/login";
 
 type UserFields = {
   firstName: unknown;
@@ -11,6 +28,11 @@ type UserFields = {
 
 type RolFields = {
   name: unknown;
+};
+
+type LoginFields = {
+  email: unknown;
+  password: unknown;
 };
 
 const toNewUser = ({
@@ -37,6 +59,14 @@ const toNewRol = ({ name }: RolFields): NewRol => {
   return newRol;
 };
 
+const toNewLogin = ({ email, password }: LoginFields): Login => {
+  const newLogin = {
+    email: parseString(email),
+    password: parseString(password),
+  };
+  return newLogin;
+};
+
 const isString = (text: unknown): text is string => {
   return typeof text === "string" || text instanceof String;
 };
@@ -59,4 +89,4 @@ const parseNumber = (nbr: unknown): number => {
   return nbr;
 };
 
-export { toNewUser, toNewRol, parseNumber };
+export { toNewUser, toNewRol, toNewLogin };

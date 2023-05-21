@@ -15,11 +15,10 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import { Router } from "express";
-import roles from "../controllers/roles.controller";
+import login from "../controllers/login.controller";
 
 const router = Router();
 
-router.get("/", roles.get);
-router.post("/", roles.create);
+router.post("/", login.create);
 
 export default router;

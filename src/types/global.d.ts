@@ -14,12 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import { Router } from "express";
-import roles from "../controllers/roles.controller";
-
-const router = Router();
-
-router.get("/", roles.get);
-router.post("/", roles.create);
-
-export default router;
+namespace NodeJS {
+  interface ProcessEnv {
+    SECRET: string;
+  }
+}
